@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A97228302E4FBEE5000670CA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A972282F2E4FBEE5000670CA /* Alamofire */; };
+		A97228332E4FBEF4000670CA /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A97228322E4FBEF4000670CA /* Swinject */; };
+		A97228362E4FBEFF000670CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A97228352E4FBEFF000670CA /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A97227D22E4FB047000670CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +35,22 @@
 		A97227DB2E4FB047000670CA /* BlockBusterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockBusterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A97228802E4FC190000670CA /* Exceptions for "BlockBuster" folder in "BlockBuster" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A97227C32E4FB046000670CA /* BlockBuster */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A97227C62E4FB046000670CA /* BlockBuster */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A97228802E4FC190000670CA /* Exceptions for "BlockBuster" folder in "BlockBuster" target */,
+			);
 			path = BlockBuster;
 			sourceTree = "<group>";
 		};
@@ -52,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97228362E4FBEFF000670CA /* Kingfisher in Frameworks */,
+				A97228302E4FBEE5000670CA /* Alamofire in Frameworks */,
+				A97228332E4FBEF4000670CA /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +134,9 @@
 			);
 			name = BlockBuster;
 			packageProductDependencies = (
+				A972282F2E4FBEE5000670CA /* Alamofire */,
+				A97228322E4FBEF4000670CA /* Swinject */,
+				A97228352E4FBEFF000670CA /* Kingfisher */,
 			);
 			productName = BlockBuster;
 			productReference = A97227C42E4FB046000670CA /* BlockBuster.app */;
@@ -195,6 +220,11 @@
 			);
 			mainGroup = A97227BB2E4FB046000670CA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A972282E2E4FBEE5000670CA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A97228312E4FBEF4000670CA /* XCRemoteSwiftPackageReference "Swinject" */,
+				A97228342E4FBEFF000670CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A97227C52E4FB046000670CA /* Products */;
 			projectDirPath = "";
@@ -271,6 +301,8 @@
 /* Begin XCBuildConfiguration section */
 		A97227E32E4FB047000670CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = A97227C62E4FB046000670CA /* BlockBuster */;
+			baseConfigurationReferenceRelativePath = Network/APIConfig.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -334,6 +366,8 @@
 		};
 		A97227E42E4FB047000670CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = A97227C62E4FB046000670CA /* BlockBuster */;
+			baseConfigurationReferenceRelativePath = Network/APIConfig.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -390,6 +424,8 @@
 		};
 		A97227E62E4FB047000670CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = A97227C62E4FB046000670CA /* BlockBuster */;
+			baseConfigurationReferenceRelativePath = Network/APIConfig.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -397,6 +433,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BlockBuster/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -418,6 +455,8 @@
 		};
 		A97227E72E4FB047000670CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = A97227C62E4FB046000670CA /* BlockBuster */;
+			baseConfigurationReferenceRelativePath = Network/APIConfig.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -425,6 +464,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BlockBuster/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -552,6 +592,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A972282E2E4FBEE5000670CA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		A97228312E4FBEF4000670CA /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		A97228342E4FBEFF000670CA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A972282F2E4FBEE5000670CA /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A972282E2E4FBEE5000670CA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		A97228322E4FBEF4000670CA /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A97228312E4FBEF4000670CA /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		A97228352E4FBEFF000670CA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A97228342E4FBEFF000670CA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A97227BC2E4FB046000670CA /* Project object */;
 }
