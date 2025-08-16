@@ -31,6 +31,7 @@ struct HomePage: View {
         switch viewModel.currentState {
         case .loading:
             ProgressView()
+                .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
         default:
             content
         }
@@ -51,9 +52,6 @@ struct HomePage: View {
     }
     
     private var toolbar: some View {
-        CustomToolbar(searchText: §viewModel.searchText, onSubmit: {}, changedState: { val in self.viewModel.changedState(isSearchActive: val) })
+        CustomToolbar(searchText: viewModel.searchText §> { text in  viewModel.searchText = text }, onSubmit: { viewModel.searchMovie() }, changedState: { val in self.viewModel.changedState(isSearchActive: val) })
     }
-    
-    
-
 }

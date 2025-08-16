@@ -88,7 +88,7 @@ final class APIManager {
     
     //MARK: Search
     func fetchSearchMovies(query: String, page: Int? = nil) async throws -> SearchMoviesResponseModel? {
-        if let url = creditsURL?.replacingOccurrences(of: "/$()/", with: "//"), let key {
+        if let url = searchURL?.replacingOccurrences(of: "/$()/", with: "//"), let key {
             let headers: HTTPHeaders = [
                 "accept" : "application/json"
             ]

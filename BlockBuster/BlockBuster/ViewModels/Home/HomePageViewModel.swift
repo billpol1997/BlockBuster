@@ -40,13 +40,26 @@ final class HomePageViewModel: ObservableObject {
                 let response = try? await fetchPopularData(page: currentPage)
                 self.movies = dataFactory.getPopularResults(from: response).movies ?? []
             case .search:
-                let response = try? await fetchSearchedData(query: searchText)
-                self.movies = dataFactory.getSearchResults(from: response).movies ?? []
+                if searchText.isEmpty {
+                    resetMovies()
+                } else {
+                    searchMovie()
+                }
+               
             case .loading:
                 break
             }
         }
         self.currentState = state
+    }
+    
+    @MainActor
+    func searchMovie() {
+        Task {  [weak self] in
+            guard let self else { return }
+            let response = try? await fetchSearchedData(query: searchText)
+            self.movies = dataFactory.getSearchResults(from: response).movies ?? []
+        }
     }
     
     func changedState(isSearchActive: Bool) {
@@ -76,5 +89,9 @@ final class HomePageViewModel: ObservableObject {
             showError = true
         }
         return nil
+    }
+    
+    private func resetMovies() {
+        movies.removeAll()
     }
 }
