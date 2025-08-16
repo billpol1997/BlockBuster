@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var text: String
     var placeholder: String = "Search"
-    var onSubmit: (() -> Void)
     
     var body: some View {
         HStack(spacing: 8) {
@@ -33,9 +32,7 @@ struct SearchBar: View {
     }
     
     private var textField: some View {
-        TextField(placeholder, text: $text, onCommit: {
-            onSubmit()
-        })
+        TextField(placeholder, text: $text)
         .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
         .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
         .textInputAutocapitalization(.none)

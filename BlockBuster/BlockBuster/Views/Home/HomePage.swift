@@ -24,6 +24,9 @@ struct HomePage: View {
             .onAppear {
                 self.viewModel.fetchData(for: .popular)
             }
+            .onReceive(viewModel.$searchText) { _ in
+                viewModel.searchMovie()
+            }
     }
     
     @ViewBuilder
@@ -54,6 +57,6 @@ struct HomePage: View {
     }
     
     private var toolbar: some View {
-        CustomToolbar(searchText: viewModel.searchText §> { text in  viewModel.searchText = text }, onSubmit: { viewModel.searchMovie() }, changedState: { val in self.viewModel.changedState(isSearchActive: val) })
+        CustomToolbar(searchText: viewModel.searchText §> { text in  viewModel.searchText = text }, changedState: { val in self.viewModel.changedState(isSearchActive: val) })
     }
 }

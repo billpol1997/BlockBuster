@@ -11,7 +11,6 @@ import SwiftUI
 struct CustomToolbar: View {
     @State var isSearchActive: Bool = false
     @Binding var searchText: String
-    var onSubmit: (() -> Void)
     var changedState: ((Bool) -> Void)
     
     var body: some View {
@@ -90,7 +89,7 @@ struct CustomToolbar: View {
     private var searchBar: some View {
         if isSearchActive {
             HStack {
-                SearchBar(text: $searchText, onSubmit: onSubmit)
+                SearchBar(text: $searchText)
                 dismissSearchButton
             }
             .transition(.opacity.combined(with: .move(edge: .trailing)))
