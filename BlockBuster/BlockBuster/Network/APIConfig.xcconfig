@@ -8,7 +8,8 @@
 // Configuration settings file format documentation can be found at:
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
-API_POPULAR_URL = https:/$()/api.themoviedb.org/3/popular
+API_POPULAR_URL = https:/$()/api.themoviedb.org/3/movie/popular
 API_SEARCH_URL = https:/$()/api.themoviedb.org/3/search/movie
-API_MOVIE_URL = https:/$()/api.themoviedb.org/3/movie //{movie id}
+API_MOVIE_URL = https:/$()/api.themoviedb.org/3/movie/{movie_id} //TODO: Replace movie id
+API_MOVIE_CREDITS_URL = https:/$()/api.themoviedb.org/3/movie/{movie_id}/credits //TODO: Replace movie id
 API_KEY = 6b2e856adafcc7be98bdf0d8b076851c

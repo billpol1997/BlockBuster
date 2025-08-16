@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 final class SessionBuilder {
-    func fetchData<T: Decodable>(from url: String, method: HTTPMethod, headers: HTTPHeaders? = nil ,parameters: Parameters? = nil, responseModel: T.Type) async throws -> T {
+    func fetchData<T: Decodable>(from url: String, method: HTTPMethod, headers: HTTPHeaders? = nil ,parameters: Parameters? = nil) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: method, parameters: parameters, headers: headers).responseDecodable(of: T.self) { response in
                 switch response.result {

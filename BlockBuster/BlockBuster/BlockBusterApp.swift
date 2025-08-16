@@ -9,14 +9,21 @@ import SwiftUI
 
 @main
 struct BlockBusterApp: App {
+    
+    init() {
+        let toolBarColor = UIColor(red: 22/255, green: 170/255, blue: 170/255, alpha: 1)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = toolBarColor
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+    }
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                SplashScreen() //TODO: add DI
+                DIContainer.shared.getContainerSwinject().resolve(SplashScreen.self)!
             }
-            .background(Color(red: 22/255, green: 170/255, blue: 170/255))
-            .ignoresSafeArea()
         }
-        
     }
 }

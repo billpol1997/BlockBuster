@@ -16,25 +16,28 @@ struct SearchBar: View {
         HStack(spacing: 8) {
             searchIcon
             textField
+            clearButton
         }
         .padding(10)
+        .frame(height: 45)
         .background(
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(Color(.secondarySystemBackground))
+            RoundedRectangle(cornerRadius: 32, style: .continuous)
+                .fill(.white)
                 .shadow(color: Color.black.opacity(0.08), radius: 6, x: 2, y: 2)
-                .shadow(color: Color.white.opacity(0.8), radius: 6, x: -2, y: -2)
         )
     }
     
     private var searchIcon: some View {
         Image(systemName: "magnifyingglass")
-            .foregroundColor(.secondary)
+            .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
     }
     
     private var textField: some View {
         TextField(placeholder, text: $text, onCommit: {
             onSubmit()
         })
+        .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
+        .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
         .textInputAutocapitalization(.none)
         .disableAutocorrection(true)
         .submitLabel(.search)
@@ -47,7 +50,7 @@ struct SearchBar: View {
                 text = ""
             } label: {
                 Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
             }
             .accessibilityLabel("Clear text")
         }

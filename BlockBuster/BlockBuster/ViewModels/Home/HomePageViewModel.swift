@@ -7,8 +7,19 @@
 
 import Foundation
 
+enum HomePageCurrentState {
+    case popular
+    case search
+    case loading
+}
+
 final class HomePageViewModel: ObservableObject {
     //MARK: Variables
+    @Published var currentState: HomePageCurrentState = .loading
+    @Published var showError: Bool = false
+    @Published var searchText: String = ""
+    @Published var currentPage: Int?
+    @Published var movies: [MovieModel] = []
     private var dataFactory: HomePageDataFactory
     private var manager: APIManager
     
@@ -16,5 +27,54 @@ final class HomePageViewModel: ObservableObject {
     init(dataFactory: HomePageDataFactory, manager: APIManager) {
         self.dataFactory = dataFactory
         self.manager = manager
+    }
+    
+    
+    //MARK: Fetching
+    @MainActor
+    func fetchData(for state: HomePageCurrentState) {
+        Task { [weak self] in
+            guard let self else { return }
+            switch state {
+            case .popular:
+                let response = try? await fetchPopularData(page: currentPage)
+                self.movies = dataFactory.getPopularResults(from: response).movies ?? []
+            case .search:
+                let response = try? await fetchSearchedData(query: searchText)
+                self.movies = dataFactory.getSearchResults(from: response).movies ?? []
+            case .loading:
+                break
+            }
+        }
+        self.currentState = state
+    }
+    
+    func changedState(isSearchActive: Bool) {
+        guard currentState != .loading else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.currentState = .loading
+            fetchData(for: isSearchActive ? .search : .popular)
+        }
+    }
+    
+    private func fetchPopularData(page: Int? = nil) async throws -> PopularMoviesResponseModel? {
+        do {
+            let response = try await manager.fetchPopularMovies(page: page)
+            return response
+        } catch {
+            showError = true
+        }
+        return nil
+    }
+    
+    private func fetchSearchedData(query: String, page: Int? = nil) async throws -> SearchMoviesResponseModel? {
+        do {
+            let response = try await manager.fetchSearchMovies(query: query, page: page)
+            return response
+        } catch {
+            showError = true
+        }
+        return nil
     }
 }

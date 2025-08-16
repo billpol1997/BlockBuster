@@ -12,14 +12,17 @@ struct CustomToolbar: View {
     @State var isSearchActive: Bool = false
     @Binding var searchText: String
     var onSubmit: (() -> Void)
+    var changedState: ((Bool) -> Void)
     
     var body: some View {
-        HStack {
+        HStack(alignment: .bottom) {
           handleState()
+                .frame(height: 56)
+                .padding(.horizontal, 16)
         }
-        .padding(.horizontal, 12)
-        .frame(height: 56)
-        .background(Color(.systemBackground))
+        .ignoresSafeArea(.all)
+        .frame(width: UIScreen.main.bounds.width)
+        .background(Color(red: 22/255, green: 170/255, blue: 170/255))
     }
     
     @ViewBuilder
@@ -34,44 +37,64 @@ struct CustomToolbar: View {
     
     private var content: some View {
         HStack {
-            Spacer()
             logo
             Spacer()
             searchButton
         }
+        .frame(width: UIScreen.main.bounds.width - 32)
     }
     
     private var logo: some View {
         Image("toolbarLogo")
             .resizable()
             .scaledToFit()
-            .frame(height: 24)
-        
+            .frame(height: 65)
+            .blur(radius: 0.2)
     }
     
     @ViewBuilder
     private var searchButton: some View {
         Button {
-            withAnimation(.linear(duration: 2)) {
+            withAnimation(.linear(duration: 0.2)) {
                 isSearchActive = true
+                changedState(isSearchActive)
             }
         } label: {
             Image(systemName: "magnifyingglass")
-                .font(.system(size: 18, weight: .semibold))
-                .padding(10)
+                .font(.system(size: 16, weight: .semibold))
+                .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
+                .padding(8)
                 .background(
                     Circle()
                         .fill(Color(.systemBackground))
                         .shadow(color: .black.opacity(0.12), radius: 6, x: 3, y: 3)
-                        .shadow(color: .white.opacity(0.9), radius: 6, x: -3, y: -3)
                 )
         }
     }
     
     @ViewBuilder
+    private var dismissSearchButton: some View {
+        Button {
+            withAnimation(.linear(duration: 0.33)) {
+                isSearchActive = false
+                changedState(isSearchActive)
+            }
+        } label: {
+            Image(systemName: "xmark.circle.fill")
+                .foregroundColor(.white)
+        }
+        .accessibilityLabel("Dismiss search")
+    }
+    
+    @ViewBuilder
     private var searchBar: some View {
         if isSearchActive {
-            SearchBar(text: $searchText, onSubmit: onSubmit)
+            HStack {
+                SearchBar(text: $searchText, onSubmit: onSubmit)
+                dismissSearchButton
+            }
+            .transition(.opacity.combined(with: .move(edge: .trailing)))
+            .animation(.easeInOut(duration: 0.9), value: isSearchActive)
         }
     }
 }

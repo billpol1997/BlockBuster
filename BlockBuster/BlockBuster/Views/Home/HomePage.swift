@@ -8,22 +8,52 @@
 import SwiftUI
 
 struct HomePage: View {
-    @State var searchText: String = ""
+    @StateObject var viewModel: HomePageViewModel
+    
+    init(viewModel: HomePageViewModel) {
+        self._viewModel = StateObject(wrappedValue: DIContainer.shared.getContainerSwinject().resolve(HomePageViewModel.self)!)
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        handleState()
+            .padding(.horizontal, 16)
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                toolbar
+            }
+            .onAppear {
+                self.viewModel.fetchData(for: .popular)
+            }
+    }
+    
+    @ViewBuilder
+    private func handleState() -> some View {
+        switch viewModel.currentState {
+        case .loading:
+            ProgressView()
+        default:
+            content
+        }
     }
     
     private var content: some View {
         VStack {
-            
+           movieListView
         }
-        .ignoresSafeArea()
-        .toolbar {
-            toolbar
+    }
+    
+    private var movieListView: some View {
+        VStack {
+            MovieGrid(movies: viewModel.movies) { movie in
+                //TODO: navigation
+            }
         }
     }
     
     private var toolbar: some View {
-        CustomToolbar(searchText: $searchText, onSubmit: {})
+        CustomToolbar(searchText: §viewModel.searchText, onSubmit: {}, changedState: { val in self.viewModel.changedState(isSearchActive: val) })
     }
+    
+    
+
 }
