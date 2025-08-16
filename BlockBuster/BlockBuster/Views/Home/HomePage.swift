@@ -47,6 +47,8 @@ struct HomePage: View {
         VStack {
             MovieGrid(movies: viewModel.movies) { movie in
                 //TODO: navigation
+            } onLoadMore: {
+                viewModel.loadMore()
             }
         }
     }
