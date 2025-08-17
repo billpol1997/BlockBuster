@@ -19,18 +19,18 @@ struct MoviePage: View {
     var body: some View {
         handleState()
             .padding(.horizontal, 16)
-            .onAppear {
-                viewModel.fetchData()
-            }
-            .navigationBarBackButtonHidden()
-            .toolbar {
-                toolbar
-            }
             .background(
                 posterBG
                     .scaledToFill()
                     .ignoresSafeArea()
             )
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                toolbar
+            }
+            .onAppear {
+                viewModel.fetchData()
+            }
     }
     
     @ViewBuilder
@@ -135,7 +135,7 @@ struct MoviePage: View {
         VStack(alignment: .leading) {
             Text("Overview: ")
                 .font(.body)
-                .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
+                .foregroundColor(.black)
             Text(viewModel.movie?.summary ?? "")
                 .font(.caption)
                 .foregroundColor(.black)
@@ -143,12 +143,8 @@ struct MoviePage: View {
                 .multilineTextAlignment(.leading)
         }
         .padding(8)
-        .background(.white.opacity(0.47))
+        .background(.ultraThinMaterial)
         .cornerRadius(8)
-        .overlay {
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color(red: 22/255, green: 170/255, blue: 170/255), lineWidth: 1)
-        }
     }
     
     private var castHeader: some View {
@@ -160,7 +156,7 @@ struct MoviePage: View {
             HStack {
                 Text("Cast (\(viewModel.movie?.cast?.count ?? 0))")
                     .font(.body)
-                    .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
+                    .foregroundColor(.black)
                 Spacer()
                 Image(systemName: showCast ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
                     .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
@@ -170,7 +166,7 @@ struct MoviePage: View {
     
     @ViewBuilder
     private var cast: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        LazyVStack(alignment: .leading, spacing: 8) {
             if let cast = viewModel.movie?.cast, cast.isEmpty.not() {
                 castHeader
                     .padding(.bottom, 4)
@@ -185,7 +181,7 @@ struct MoviePage: View {
         }
         .foregroundColor(.black)
         .padding(8)
-        .background(.white.opacity(0.47))
+        .background( .ultraThinMaterial)
         .cornerRadius(8)
         .overlay {
             RoundedRectangle(cornerRadius: 8)
@@ -209,7 +205,9 @@ struct MoviePage: View {
                 .blur(radius: 0.2)
             
         }
+        .frame(height: 56)
         .frame(width: UIScreen.main.bounds.width - 32)
+        .ignoresSafeArea(.all)
     }
 }
 

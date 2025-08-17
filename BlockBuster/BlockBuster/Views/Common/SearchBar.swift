@@ -18,7 +18,7 @@ struct SearchBar: View {
             clearButton
         }
         .padding(10)
-        .frame(height: 45)
+        .frame(height: 40)
         .background(
             RoundedRectangle(cornerRadius: 32, style: .continuous)
                 .fill(.white)
