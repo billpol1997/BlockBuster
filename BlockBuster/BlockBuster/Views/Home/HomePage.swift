@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomePage: View {
     @StateObject var viewModel: HomePageViewModel
+    @State private var navigateToMoviePage: Bool = false
+    @State private var selectedMovie: Int = 0
     
     init(viewModel: HomePageViewModel) {
         self._viewModel = StateObject(wrappedValue: DIContainer.shared.getContainerSwinject().resolve(HomePageViewModel.self)!)
@@ -53,6 +55,10 @@ struct HomePage: View {
             } else {
                 movieListView
             }
+            
+            NavigationLink(destination: DIContainer.shared.getContainerSwinject().resolve(MoviePage.self, argument: selectedMovie)!,
+                           isActive: self.$navigateToMoviePage,
+                           label: { EmptyView() } ).hidden()
         }
     }
     
@@ -66,7 +72,8 @@ struct HomePage: View {
     private var movieListView: some View {
         VStack {
             MovieGrid(movies: viewModel.movies) { movie in
-                //TODO: navigation
+                self.selectedMovie = movie.id ?? 0
+                self.navigateToMoviePage = true
             } onLoadMore: {
                 viewModel.loadMore()
             }

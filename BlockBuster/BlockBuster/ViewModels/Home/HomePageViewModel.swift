@@ -22,12 +22,11 @@ final class HomePageViewModel: ObservableObject {
     @Published var movies: [MovieModel] = []
 
     private var dataFactory: HomePageDataFactory
-    private var manager: APIManager
+    private var manager = APIManager.shared
     
     //MARK: Init
-    init(dataFactory: HomePageDataFactory, manager: APIManager) {
+    init(dataFactory: HomePageDataFactory) {
         self.dataFactory = dataFactory
-        self.manager = manager
     }
     
     

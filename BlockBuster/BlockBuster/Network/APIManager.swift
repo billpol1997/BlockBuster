@@ -10,6 +10,7 @@ import Alamofire
 
 final class APIManager {
     //MARK: Variables
+    static let shared = APIManager()
     let session = SessionBuilder()
     let popularUrl =  Bundle.main.object(forInfoDictionaryKey: "API_POPULAR_URL") as? String
     let searchURL = Bundle.main.object(forInfoDictionaryKey: "API_SEARCH_URL") as? String

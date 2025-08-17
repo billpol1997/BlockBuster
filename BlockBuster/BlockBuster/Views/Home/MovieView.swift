@@ -66,7 +66,7 @@ struct MovieView: View {
                 Text("Release date ")
                     .font(.system(size: 8))
                     .padding(.bottom, 2)
-                Text(dateText)
+                Text(dateText.split(separator: "-").reversed().joined(separator: "-"))
                     .font(.system(size: 8))
             }
             .padding(4)

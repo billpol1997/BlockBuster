@@ -28,52 +28,55 @@ struct MovieModel: Identifiable {
     }
     
     //MARK: Popular init
-    init(from popular: MoviePopularItem) {
-        self.id = popular.id
-        self.image = "https://image.tmdb.org/t/p/w500/" + (popular.poster_path ?? "")
-        self.title = popular.title
-        self.date = popular.release_date
+    init(from popular: MoviePopularItem?) {
+        self.id = popular?.id
+        self.image = "https://image.tmdb.org/t/p/w500/" + (popular?.poster_path ?? "")
+        self.title = popular?.title
+        self.date = popular?.release_date
         self.summary = ""
-        self.gerne = GenreMap.name(for: popular.genre_ids?.first ?? 0)
+        self.gerne = GenreMap.name(for: popular?.genre_ids?.first ?? 0)
         self.cast = []
     }
     
     //MARK: Search init
-    init(from search: MovieSearchItem) {
-        self.id = search.id
-        self.image = "https://image.tmdb.org/t/p/w500/" + (search.poster_path ?? "")
-        self.title = search.title
-        self.date = search.release_date
+    init(from search: MovieSearchItem?) {
+        self.id = search?.id
+        self.image = "https://image.tmdb.org/t/p/w500/" + (search?.poster_path ?? "")
+        self.title = search?.title
+        self.date = search?.release_date
         self.summary = ""
-        self.gerne = GenreMap.name(for: search.genre_ids?.first ?? 0)
+        self.gerne = GenreMap.name(for: search?.genre_ids?.first ?? 0)
         self.cast = []
     }
     
     //MARK: Details and Credits init
-    init(from movie: MovieResponseModel, and credits: MovieCreditsResponseModel) {
-        self.id = movie.id
-        self.image = "https://image.tmdb.org/t/p/w500/" + (movie.poster_path ?? "")
-        self.title = movie.title
-        self.date = movie.release_date
-        self.summary = movie.overview
-        self.gerne = movie.genres?.first?.name
-        self.cast = credits.cast?.map { Cast(from: $0) }
+    init(from movie: MovieResponseModel?, and credits: MovieCreditsResponseModel?) {
+        self.id = movie?.id
+        self.image = "https://image.tmdb.org/t/p/w500/" + (movie?.poster_path ?? "")
+        self.title = movie?.title
+        self.date = movie?.release_date
+        self.summary = movie?.overview
+        self.gerne = movie?.genres?.first?.name
+        self.cast = credits?.cast?.map { Cast(from: $0) }
     }
     
 }
 
-struct Cast {
+struct Cast: Identifiable {
+    let id: UUID
     let characters: String?
     let actor: String?
     
     //MARK: Default init
     init() {
+        self.id = UUID()
         self.characters = ""
         self.actor = ""
     }
     
     //MARK: Credits init
     init(from credits: MovieCast) {
+        self.id = UUID()
         self.characters = credits.character
         self.actor = credits.name
     }

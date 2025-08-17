@@ -27,15 +27,23 @@ final class DIContainer {
         }
         
         container.register(HomePageViewModel.self) { r in
-            HomePageViewModel(dataFactory: r.resolve(HomePageDataFactory.self)!, manager: r.resolve(APIManager.self)!)
-        }
-        
-        container.register(APIManager.self) { _ in
-            APIManager()
+            HomePageViewModel(dataFactory: r.resolve(HomePageDataFactory.self)!)
         }
         
         container.register(HomePageDataFactory.self) { _ in
             HomePageDataFactory()
+        }
+        
+        container.register(MoviePage.self) { r, id in
+            MoviePage(movieId: id, viewModel: r.resolve(MoviePageViewModel.self, argument: id)!)
+        }
+        
+        container.register(MoviePageViewModel.self) { r, id in
+            MoviePageViewModel(movieId: id, dataFactory: r.resolve(MoviePageDataFactory.self)!)
+        }
+        
+        container.register(MoviePageDataFactory.self) { _ in
+            MoviePageDataFactory()
         }
         
         return container

@@ -15,8 +15,11 @@ struct ErrorView: View {
                 .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
             Spacer()
         }
+        .padding(8)
+        .overlay {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color(red: 22/255, green: 170/255, blue: 170/255), lineWidth: 1)
+        }
         .frame(width: UIScreen.main.bounds.width - 32)
-        .border(Color(red: 22/255, green: 170/255, blue: 170/255), width: 1)
-        .cornerRadius(12)
     }
 }
