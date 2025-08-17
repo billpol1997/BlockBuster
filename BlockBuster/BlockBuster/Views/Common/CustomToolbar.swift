@@ -17,7 +17,7 @@ struct CustomToolbar: View {
         HStack(alignment: .bottom) {
           handleState()
                 .frame(height: 56)
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 8)
         }
         .ignoresSafeArea(.all)
         .frame(width: UIScreen.main.bounds.width)
@@ -79,7 +79,7 @@ struct CustomToolbar: View {
                 changedState(isSearchActive)
             }
         } label: {
-            Image(systemName: "xmark.circle.fill")
+            Image(systemName: "arrow.left.circle.fill")
                 .foregroundColor(.white)
         }
         .accessibilityLabel("Dismiss search")
@@ -89,8 +89,9 @@ struct CustomToolbar: View {
     private var searchBar: some View {
         if isSearchActive {
             HStack {
-                SearchBar(text: $searchText)
                 dismissSearchButton
+                SearchBar(text: $searchText)
+                Spacer()
             }
             .transition(.opacity.combined(with: .move(edge: .trailing)))
             .animation(.easeInOut(duration: 0.9), value: isSearchActive)

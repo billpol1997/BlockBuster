@@ -25,24 +25,41 @@ struct HomePage: View {
                 self.viewModel.fetchData(for: .popular)
             }
             .onReceive(viewModel.$searchText) { _ in
+             guard viewModel.currentState == .search else { return }
                 viewModel.searchMovie()
             }
     }
     
     @ViewBuilder
     private func handleState() -> some View {
-        switch viewModel.currentState {
-        case .loading:
-            ProgressView()
-                .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
-        default:
-            content
+        if viewModel.showError {
+            ErrorView()
+        } else {
+            switch viewModel.currentState {
+            case .loading:
+                ProgressView()
+                    .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
+            default:
+                content
+            }
         }
     }
     
+    @ViewBuilder
     private var content: some View {
         VStack {
-           movieListView
+            if viewModel.currentState == .search, viewModel.movies.isEmpty {
+                emptySearchView
+            } else {
+                movieListView
+            }
+        }
+    }
+    
+    private var emptySearchView: some View {
+        VStack {
+            Text("Search your favorite movies!")
+                .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
         }
     }
     

@@ -20,7 +20,6 @@ final class HomePageViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var currentPage: Int?
     @Published var movies: [MovieModel] = []
-    @Published private(set) var hasMore: Bool = true
 
     private var dataFactory: HomePageDataFactory
     private var manager: APIManager
@@ -39,17 +38,14 @@ final class HomePageViewModel: ObservableObject {
             guard let self else { return }
             switch state {
             case .popular:
-                resetMovies()
                 let response = try? await fetchPopularData(page: currentPage)
                 self.currentPage = response?.page ?? 0
-                self.movies.append(contentsOf: dataFactory.getPopularResults(from: response).movies ?? [])
+                let movies = dataFactory.getPopularResults(from: response).movies ?? []
+                self.movies.append(contentsOf: movies)
             case .search:
-                if searchText.isEmpty {
-                    resetMovies()
-                } else {
+                if searchText.isEmpty.not() {
                     searchMovie()
                 }
-                
             case .loading:
                 break
             }
@@ -60,15 +56,19 @@ final class HomePageViewModel: ObservableObject {
     @MainActor
     func searchMovie() {
         Task {  [weak self] in
-            guard let self else { return }
+            guard let self, currentState == .search else { return }
             if searchText.isEmpty {
                 self.resetMovies()
             } else {
                 let response = try? await fetchSearchedData(query: searchText)
+                let movies = dataFactory.getSearchResults(from: response).movies ?? []
                 self.currentPage = response?.page ?? 0
-                self.movies.append(contentsOf: dataFactory.getSearchResults(from: response).movies ?? [])
+                self.movies.append(contentsOf: movies)
+                currentState = .search
             }
+            
         }
+        currentState = .search
     }
     
     func loadMore() {
@@ -85,7 +85,9 @@ final class HomePageViewModel: ObservableObject {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.currentState = .loading
-            fetchData(for: isSearchActive ? .search : .popular)
+            resetMovies()
+            let state = isSearchActive ? HomePageCurrentState.search : HomePageCurrentState.popular
+            fetchData(for: state)
         }
     }
     
