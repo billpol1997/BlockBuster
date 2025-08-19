@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CustomToolbar: View {
+    @Namespace private var bubbleNS
     @State var isSearchActive: Bool = false
     @Binding var searchText: String
     var changedState: ((Bool) -> Void)
@@ -39,6 +40,7 @@ struct CustomToolbar: View {
             logo
             Spacer()
             searchButton
+                .transition(.bubble)
         }
         .frame(width: UIScreen.main.bounds.width - 32)
     }
@@ -54,7 +56,7 @@ struct CustomToolbar: View {
     @ViewBuilder
     private var searchButton: some View {
         Button {
-            withAnimation(.linear(duration: 0.2)) {
+            withAnimation(.bubbleSpring) {
                 isSearchActive = true
                 changedState(isSearchActive)
             }
@@ -68,19 +70,21 @@ struct CustomToolbar: View {
                         .fill(Color(.systemBackground))
                         .shadow(color: .black.opacity(0.12), radius: 6, x: 3, y: 3)
                 )
+                .matchedGeometryEffect(id: "mainBubble", in: bubbleNS)
         }
     }
     
     @ViewBuilder
     private var dismissSearchButton: some View {
         Button {
-            withAnimation(.linear(duration: 0.33)) {
+            withAnimation(.bubbleSpring) {
                 isSearchActive = false
                 changedState(isSearchActive)
             }
         } label: {
             Image(systemName: "arrow.left.circle.fill")
                 .foregroundColor(.white)
+                .matchedGeometryEffect(id: "mainBubble", in: bubbleNS)
         }
         .accessibilityLabel("Dismiss search")
     }
@@ -90,11 +94,29 @@ struct CustomToolbar: View {
         if isSearchActive {
             HStack {
                 dismissSearchButton
+                    .transition(.bubble.combined(with: .move(edge: .trailing)))
+                    .animation(.linear(duration: 0.3), value: isSearchActive)
                 SearchBar(text: $searchText)
+                    .transition(.bubble)
                 Spacer()
             }
             .transition(.opacity.combined(with: .move(edge: .trailing)))
             .animation(.easeInOut(duration: 0.9), value: isSearchActive)
         }
+    }
+}
+
+extension AnyTransition {
+    static var bubble: AnyTransition {
+        .asymmetric(
+            insertion: .scale(scale: 0.7).combined(with: .opacity),
+            removal: .scale(scale: 0.7).combined(with: .opacity)
+        )
+    }
+}
+
+extension Animation {
+    static var bubbleSpring: Animation {
+        .spring(response: 0.35, dampingFraction: 0.75, blendDuration: 0.4)
     }
 }
