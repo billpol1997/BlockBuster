@@ -23,6 +23,7 @@ final class HomePageViewModel: ObservableObject {
 
     private var dataFactory: HomePageDataFactory
     private var manager = APIManager.shared
+    private var uiTesting = CommandLine.arguments.contains("--ui-testing")
     
     //MARK: Init
     init(dataFactory: HomePageDataFactory) {
@@ -32,12 +33,12 @@ final class HomePageViewModel: ObservableObject {
     
     //MARK: Fetching
     @MainActor
-    func fetchData(for state: HomePageCurrentState) {
+    func fetchData(for state: HomePageCurrentState,_ isInTesting: Bool = false) {
         Task { [weak self] in
             guard let self else { return }
             switch state {
             case .popular:
-                let response = try? await fetchPopularData(page: currentPage)
+                let response = try? await fetchPopularData(page: currentPage, isInTesting)
                 self.currentPage = response?.page ?? 0
                 let movies = dataFactory.getPopularResults(from: response).movies ?? []
                 self.movies.append(contentsOf: movies)
@@ -53,13 +54,13 @@ final class HomePageViewModel: ObservableObject {
     }
     
     @MainActor
-    func searchMovie() {
+    func searchMovie(_ isInTesting: Bool = false) {
         Task {  [weak self] in
             guard let self, currentState == .search else { return }
             if searchText.isEmpty {
                 self.resetMovies()
             } else {
-                let response = try? await fetchSearchedData(query: searchText)
+                let response = try? await fetchSearchedData(query: searchText, isInTesting)
                 let movies = dataFactory.getSearchResults(from: response).movies ?? []
                 self.currentPage = response?.page ?? 0
                 self.movies.append(contentsOf: movies)
@@ -90,9 +91,9 @@ final class HomePageViewModel: ObservableObject {
         }
     }
     
-    private func fetchPopularData(page: Int? = nil) async throws -> PopularMoviesResponseModel? {
+    private func fetchPopularData(page: Int? = nil,_ isInTesting: Bool = false) async throws -> PopularMoviesResponseModel? {
         do {
-            let response = try await manager.fetchPopularMovies(page: page)
+            let response = try await manager.fetchPopularMovies(page: page, (isInTesting || uiTesting))
             return response
         } catch {
             showError = true
@@ -100,9 +101,9 @@ final class HomePageViewModel: ObservableObject {
         return nil
     }
     
-    private func fetchSearchedData(query: String, page: Int? = nil) async throws -> SearchMoviesResponseModel? {
+    private func fetchSearchedData(query: String, page: Int? = nil, _ isInTesting: Bool = false) async throws -> SearchMoviesResponseModel? {
         do {
-            let response = try await manager.fetchSearchMovies(query: query, page: page)
+            let response = try await manager.fetchSearchMovies(query: query, page: page, (isInTesting || uiTesting))
             return response
         } catch {
             showError = true

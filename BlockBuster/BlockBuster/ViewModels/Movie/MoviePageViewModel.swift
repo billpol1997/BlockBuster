@@ -17,6 +17,7 @@ final class MoviePageViewModel: ObservableObject {
     private var creditsResponse: MovieCreditsResponseModel?
     private var manager = APIManager.shared
     private var dataFactory: MoviePageDataFactory
+    private var uiTesting = CommandLine.arguments.contains("--ui-testing")
     
     init(movieId: Int, dataFactory: MoviePageDataFactory) {
         self.movieId = movieId
@@ -24,17 +25,17 @@ final class MoviePageViewModel: ObservableObject {
     }
     
     @MainActor
-    func fetchData() {
+    func fetchData(_ isInTesting: Bool = false) {
         isLoading = true
         Task { [weak self] in
             guard let self else { return }
             await withThrowingTaskGroup(of: Any.self) { group in
                 group.addTask {
-                    self.detailsResponse = try? await self.fetchDetails()
+                    self.detailsResponse = try? await self.fetchDetails(isInTesting)
                 }
                 
                 group.addTask {
-                    self.creditsResponse = try? await self.fetchCredits()
+                    self.creditsResponse = try? await self.fetchCredits(isInTesting)
                 }
             }
             self.movie = self.dataFactory.transformData(details: self.detailsResponse, credits: self.creditsResponse)
@@ -42,10 +43,10 @@ final class MoviePageViewModel: ObservableObject {
         }
     }
     
-    private func fetchDetails() async throws -> MovieResponseModel? {
+    private func fetchDetails(_ isInTesting: Bool = false) async throws -> MovieResponseModel? {
         
         do {
-            let response = try await manager.fetchMovieDetail(id: movieId)
+            let response = try await manager.fetchMovieDetail(id: movieId, (isInTesting || uiTesting))
             return response
         } catch {
             showError = true
@@ -53,9 +54,9 @@ final class MoviePageViewModel: ObservableObject {
         return nil
     }
     
-    private func fetchCredits() async throws -> MovieCreditsResponseModel? {
+    private func fetchCredits(_ isInTesting: Bool = false) async throws -> MovieCreditsResponseModel? {
         do {
-            let response = try await manager.fetchMovieCredits(id: movieId)
+            let response = try await manager.fetchMovieCredits(id: movieId, (isInTesting || uiTesting))
             return response
         } catch {
             showError = true

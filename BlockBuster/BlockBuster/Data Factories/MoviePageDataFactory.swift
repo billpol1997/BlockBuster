@@ -12,5 +12,4 @@ final class MoviePageDataFactory {
     func transformData(details: MovieResponseModel?, credits: MovieCreditsResponseModel?) -> MovieModel? {
         return MovieModel(from: details, and: credits)
     }
- 
 }
