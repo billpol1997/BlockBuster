@@ -1,0 +1,382 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/eU7IfdWq8KQy0oNd4kKXS0QUR08.jpg",
+      "genre_ids": [
+        878,
+        12,
+        28
+      ],
+      "id": 1061474,
+      "original_language": "en",
+      "original_title": "Superman",
+      "overview": "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+      "popularity": 1003.292,
+      "poster_path": "/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg",
+      "release_date": "2025-07-09",
+      "title": "Superman",
+      "video": false,
+      "vote_average": 7.6,
+      "vote_count": 2226
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5OGrBmi0fWAE6b1R6uv5EnuWOaL.jpg",
+      "genre_ids": [
+        35,
+        28,
+        18
+      ],
+      "id": 45132,
+      "original_language": "en",
+      "original_title": "Super",
+      "overview": "After his wife falls under the influence of a drug dealer, an everyday guy transforms himself into Crimson Bolt, a superhero with the best intentions, though he lacks for heroic skills.",
+      "popularity": 2.2069,
+      "poster_path": "/jZrRMGSajZQehg8mz74A5A00L3.jpg",
+      "release_date": "2010-11-26",
+      "title": "Super",
+      "video": false,
+      "vote_average": 6.545,
+      "vote_count": 1647
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wHTXHIm7qeWvpG9uycptqhPwh6g.jpg",
+      "genre_ids": [
+        28,
+        80,
+        18
+      ],
+      "id": 373796,
+      "original_language": "de",
+      "original_title": "Super",
+      "overview": "The Earth shortly before its end. The houses in the cities are deserted, the streets smashed. The sky shimmers dark gray.",
+      "popularity": 1.2311,
+      "poster_path": "/hl4qU6FtN7UkMIuUEoRQDeOx268.jpg",
+      "release_date": "1984-05-11",
+      "title": "Super",
+      "video": false,
+      "vote_average": 6.2,
+      "vote_count": 20
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35
+      ],
+      "id": 500476,
+      "original_language": "es",
+      "original_title": "Super",
+      "overview": "Displays the experiences of diverse groups of people inside a supermarket.",
+      "popularity": 2.4289,
+      "poster_path": "/bYtZrzvhwvpVS8nY07whohZ9F0G.jpg",
+      "release_date": "2009-10-01",
+      "title": "Super",
+      "video": false,
+      "vote_average": 5.0,
+      "vote_count": 16
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 406960,
+      "original_language": "en",
+      "original_title": "Super",
+      "overview": "The main character, Albert, gets lost in the seductive world of pretty packages. When his frivolous fantasy turns into a nightmare he discovers a different world behind the facade of the supermarket.",
+      "popularity": 0.0478,
+      "poster_path": null,
+      "release_date": "2012-11-14",
+      "title": "Super",
+      "video": false,
+      "vote_average": 6.0,
+      "vote_count": 10
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 426004,
+      "original_language": "en",
+      "original_title": "Super",
+      "overview": "When a mysterious girl falls into the sights of a violent stalker, she is left with only one means of survival...",
+      "popularity": 0.1074,
+      "poster_path": "/58MYCRyybbNwThUEinhYyFTEOoC.jpg",
+      "release_date": "2015-04-25",
+      "title": "Super",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 13
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 872268,
+      "original_language": "en",
+      "original_title": "Súper",
+      "overview": "Everyday, when leaving school, Violet sees a group of kids harass, bully and mock another kid. Confronted with this injustice, Violet is inspired by what she admires most: a superhero.",
+      "popularity": 0.0214,
+      "poster_path": "/wLcTd65e37DuiifepP5oljK74IL.jpg",
+      "release_date": "2020-01-28",
+      "title": "Súper",
+      "video": false,
+      "vote_average": 5.7,
+      "vote_count": 11
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        18,
+        10749
+      ],
+      "id": 1154389,
+      "original_language": "el",
+      "original_title": "Super",
+      "overview": "On their way to the supermarket, Penny and James meet again for the first time.",
+      "popularity": 0.3835,
+      "poster_path": "/AemRMWGnCDx3IOkjIfnExx80vJ4.jpg",
+      "release_date": "2023-04-28",
+      "title": "Super",
+      "video": false,
+      "vote_average": 5.9,
+      "vote_count": 18
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kDQdFs5XL6G8TuXvd0NnJfQ59GP.jpg",
+      "genre_ids": [
+        878,
+        12,
+        28,
+        35,
+        53
+      ],
+      "id": 641501,
+      "original_language": "fr",
+      "original_title": "Comment je suis devenu super-héros",
+      "overview": "Paris 2020. While superheroes have assimilated into the Parisian society, they discover a new drug that gives themselves personal superpowers to mere mortals. Lieutenants Moreau and Schaltzmann are investigating the case with the support of two ex-superheroes, Monte Carlo and Callista. They'll do whatever it takes to dismantle the traffic. But Moreau's past resurfaces, and the investigation becomes more complicated.",
+      "popularity": 1.5409,
+      "poster_path": "/d0wn9YtEnmbucx8ZUsT918ctoiK.jpg",
+      "release_date": "2020-11-19",
+      "title": "How I Became a Superhero",
+      "video": false,
+      "vote_average": 6.1,
+      "vote_count": 524
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/a2wNCt97RgSs5b8wG5Gztv0GrDV.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 457915,
+      "original_language": "es",
+      "original_title": "Superlópez",
+      "overview": "Juan López must balance an office job with heroic feats to save the love of his life and native planet Chitón.",
+      "popularity": 2.1247,
+      "poster_path": "/7doCBDNnEITiRg4LPI7wK1jdb4p.jpg",
+      "release_date": "2018-11-23",
+      "title": "Superlopez",
+      "video": false,
+      "vote_average": 5.537,
+      "vote_count": 267
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/A0mGPDUi75R3nY8TvZZGmP3TvVj.jpg",
+      "genre_ids": [
+        99,
+        10402
+      ],
+      "id": 1508562,
+      "original_language": "es",
+      "original_title": "Sigo siendo la misma",
+      "overview": "This documentary explores Yurena's meteoric rise to fame as Tamara, the media frenzy she faced in the 2000s and the present-day lives of her TV rivals.",
+      "popularity": 10.1222,
+      "poster_path": "/mfuUAORL9v4hwrVes1FKdPuyf6p.jpg",
+      "release_date": "2025-07-17",
+      "title": "I'm Still a Superstar",
+      "video": false,
+      "vote_average": 5.7,
+      "vote_count": 11
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yom04LmuExgZq6TG4svzFx1rbRW.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1181277,
+      "original_language": "en",
+      "original_title": "Circle City Supernatural",
+      "overview": "The calls to Lindsay Mallyn's late-night, paranormal radio show are going from strange to stranger as the people of Circle City confront the supernatural in this Halloween-themed anthology.",
+      "popularity": 0.2972,
+      "poster_path": "/6GRoVsRjVxL8bZs177PcOvdx86g.jpg",
+      "release_date": "2023-10-01",
+      "title": "Circle City Supernatural",
+      "video": false,
+      "vote_average": 5.4,
+      "vote_count": 4
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pCtQbu6836YdxWTvf853dbnvGAm.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 306910,
+      "original_language": "it",
+      "original_title": "Superstizione",
+      "overview": "Short documentary about superstition in southern Italy.",
+      "popularity": 0.2958,
+      "poster_path": "/znDhVGX2SvuNc3PiZJb21JGoIWw.jpg",
+      "release_date": "1948-11-01",
+      "title": "Superstition",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oFrLUxWEIlSyCWV8vB2mlSDVlmZ.jpg",
+      "genre_ids": [
+        10402
+      ],
+      "id": 532348,
+      "original_language": "ja",
+      "original_title": "超英雄祭 Kamen Rider × Super Sentai Live & Show 2018",
+      "overview": "The seventh annual stage show and concert for both the Kamen Rider and Super Sentai series, featuring cast members from both shows and popular singers of recent seasons.",
+      "popularity": 0.4698,
+      "poster_path": "/i1QY0Jw9h5bkZ4TYHDTKiYLdfDO.jpg",
+      "release_date": "2018-05-09",
+      "title": "Super Hero Festival: Kamen Rider x Super Sentai Live & Show 2018",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3ezMT5o3KIB2A9fycwZW5HhDfno.jpg",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 122083,
+      "original_language": "fr",
+      "original_title": "Superstar",
+      "overview": "An average guy who works in a recycling plant wakes up one morning to discover that he's become inexplicably famous.",
+      "popularity": 2.4903,
+      "poster_path": "/peKc3CJElIHXdq0z4chJmABdzWD.jpg",
+      "release_date": "2012-08-29",
+      "title": "Superstar",
+      "video": false,
+      "vote_average": 5.127,
+      "vote_count": 83
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pwguHVd95jtFzqHnZwcUmxvfHTb.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 822264,
+      "original_language": "zh",
+      "original_title": "超神保镖",
+      "overview": "",
+      "popularity": 1.4356,
+      "poster_path": "/1hpecrd4rCIOxTz09uAStvIsltl.jpg",
+      "release_date": "2021-04-22",
+      "title": "Super Bodyguard",
+      "video": false,
+      "vote_average": 5.8,
+      "vote_count": 3
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5GEEs46HGDsSxycvhagLuzol34M.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 76410,
+      "original_language": "fr",
+      "original_title": "Le Plein de super",
+      "overview": "When a young auto salesman is forced to give up a vacation with his wife in order to drive a big American car to its new owner who lives on the Riviera, he makes the best of things. First, he gets and old friend to ride along with him. Then, the two of them are joined by another pair of men who want to ride south.",
+      "popularity": 0.4458,
+      "poster_path": "/jGiF3i4V4XsiellWB5LgWtSBgrM.jpg",
+      "release_date": "1976-04-07",
+      "title": "Fill 'er Up with Super",
+      "video": false,
+      "vote_average": 6.4,
+      "vote_count": 18
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 1438480,
+      "original_language": "kk",
+      "original_title": "Super курьер",
+      "overview": "Timur is a kind-hearted courier who is always ready to help others, even at his own expense. One day, after defending a respected judge from a group of thugs, he receives an unusual offer—to become the driver for the judge’s daughter, Sabina. However, he soon realizes that his real job is to be her bodyguard, as a powerful enemy of the family is willing to do anything to take her away. When Sabina is kidnapped, Timur must cast aside his fears and become a hero to save her and uncover why she is so important to the criminals.",
+      "popularity": 0.1809,
+      "poster_path": "/gMwRomvk9l3O3jU6G3NckjShEWV.jpg",
+      "release_date": "2025-03-20",
+      "title": "Super courier",
+      "video": false,
+      "vote_average": 6.25,
+      "vote_count": 4
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1bFKM01f0Lhioy9UBigPJzFFtiG.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 68646,
+      "original_language": "pl",
+      "original_title": "Superprodukcja",
+      "overview": "An independent film critic is commissioned to write a blockbuster screenplay in which the girlfriend of an influential gangster is to play. Criticising is easier than creating. The critic tries to save his skin with the help of a girl, a proofreader from the editorial office.",
+      "popularity": 1.4307,
+      "poster_path": "/9D4kaCXImfOSqTLV14zgiDKgUYm.jpg",
+      "release_date": "2002-02-28",
+      "title": "Superproduction",
+      "video": false,
+      "vote_average": 4.4,
+      "vote_count": 16
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zldvlkHlHKwrD3kNidMoSNN4Ir6.jpg",
+      "genre_ids": [
+        16,
+        35,
+        10751,
+        12
+      ],
+      "id": 1100998,
+      "original_language": "en",
+      "original_title": "SuperKlaus",
+      "overview": "Santa Claus's wish comes true when he accidentally bumps his head and starts believing he's SuperKlaus. With the help of Billie and Leo his elf-xecutive assistant, SuperKlaus will take on a toy-obsessed businessman to save Christmas.",
+      "popularity": 21.7874,
+      "poster_path": "/8sgc5TA8xsi4wpKrf7XrFKscujQ.jpg",
+      "release_date": "2024-11-01",
+      "title": "SuperKlaus",
+      "video": false,
+      "vote_average": 6.0,
+      "vote_count": 5
+    }
+  ],
+  "total_pages": 215,
+  "total_results": 4298
+}
