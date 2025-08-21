@@ -9,14 +9,14 @@ import SwiftUI
 
 struct MovieView: View {
     let movie: MovieModel
-
+    
     var body: some View {
         VStack(spacing: 8) {
             posterView
             title
         }
     }
-
+    
     private var placeholderImage: some View {
         Image(systemName: "film")
             .font(.largeTitle)
@@ -28,7 +28,7 @@ struct MovieView: View {
         ZStack(alignment: .bottomLeading) {
             Rectangle()
                 .fill(Color.secondary.opacity(0.15))
-
+            
             poster
             dateView
         }

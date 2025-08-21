@@ -14,24 +14,24 @@ enum HomePageCurrentState {
 }
 
 final class HomePageViewModel: ObservableObject {
-    //MARK: Variables
+    //MARK: - Variables
     @Published var currentState: HomePageCurrentState = .loading
     @Published var showError: Bool = false
     @Published var searchText: String = ""
     @Published var currentPage: Int?
     @Published var movies: [MovieModel] = []
-
+    
     private var dataFactory: HomePageDataFactory
     private var manager = APIManager.shared
     private var uiTesting = CommandLine.arguments.contains("--ui-testing")
     
-    //MARK: Init
+    //MARK: - Init
     init(dataFactory: HomePageDataFactory) {
         self.dataFactory = dataFactory
     }
     
     
-    //MARK: Fetching
+    //MARK: - Fetching
     @MainActor
     func fetchData(for state: HomePageCurrentState,_ isInTesting: Bool = false) {
         Task { [weak self] in
@@ -53,6 +53,7 @@ final class HomePageViewModel: ObservableObject {
         self.currentState = state
     }
     
+    //MARK: - Search
     @MainActor
     func searchMovie(_ isInTesting: Bool = false) {
         Task {  [weak self] in
@@ -71,6 +72,7 @@ final class HomePageViewModel: ObservableObject {
         currentState = .search
     }
     
+    //MARK: - Load more
     func loadMore() {
         guard currentState != .loading else { return }
         DispatchQueue.main.async { [weak self] in
@@ -80,6 +82,7 @@ final class HomePageViewModel: ObservableObject {
         }
     }
     
+    //MARK: - State handling
     func changedState(isSearchActive: Bool) {
         guard currentState != .loading else { return }
         DispatchQueue.main.async { [weak self] in
@@ -91,6 +94,7 @@ final class HomePageViewModel: ObservableObject {
         }
     }
     
+    //MARK: - Private functions
     private func fetchPopularData(page: Int? = nil,_ isInTesting: Bool = false) async throws -> PopularMoviesResponseModel? {
         do {
             let response = try await manager.fetchPopularMovies(page: page, (isInTesting || uiTesting))

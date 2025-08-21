@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct MoviePage: View {
+    //MARK: - Properties
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: MoviePageViewModel
     @State private var showCast: Bool = false
     
+    //MARK: - Init
     init(movieId: Int, viewModel: MoviePageViewModel) {
         self._viewModel = StateObject(wrappedValue: DIContainer.shared.getContainerSwinject().resolve(MoviePageViewModel.self, argument: movieId)!)
     }
     
+    //MARK: - Body
     var body: some View {
         handleState()
             .padding(.horizontal, 16)
@@ -24,6 +27,8 @@ struct MoviePage: View {
                     .scaledToFill()
                     .ignoresSafeArea()
             )
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("MoviePageView")
             .navigationBarBackButtonHidden()
             .toolbar {
                 toolbar
@@ -33,6 +38,7 @@ struct MoviePage: View {
             }
     }
     
+    //MARK: - State handling
     @ViewBuilder
     private func handleState() -> some View {
         if viewModel.showError {
@@ -48,7 +54,7 @@ struct MoviePage: View {
         }
     }
     
-    
+    //MARK: - Sub views
     private var content: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 16) {

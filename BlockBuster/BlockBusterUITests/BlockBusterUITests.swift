@@ -8,34 +8,51 @@
 import XCTest
 
 final class BlockBusterUITests: XCTestCase {
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launchArguments.append("--ui-testing")
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // Test: Home Page is always visible
+    func testHomePageViewExists() throws {
+        let homePageView = app.descendants(matching: .any)["HomePageView"]
+        XCTAssertTrue(homePageView.waitForExistence(timeout: 5), "HomePageView should exist in the view hierarchy")
     }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    
+    // Test: Movie list loads at launch
+    func testMovieListLoads() throws {
+        let predicate = NSPredicate(format: "identifier BEGINSWITH %@", "MovieCell_")
+        let movieCells = app.otherElements.matching(predicate)
+        let firstMovie = movieCells.firstMatch
+        XCTAssertTrue(firstMovie.waitForExistence(timeout: 5), "At least one Movie cell should be loaded")
+        
+    }
+    
+    //Test Movie Page navigation
+    func testMoviePageNavigation() throws {
+        let moviePageView = app.descendants(matching: .any)["MoviePageView"]
+        let predicate = NSPredicate(format: "identifier BEGINSWITH %@", "MovieCell_")
+        let movieCells = app.otherElements.matching(predicate)
+        let firstMovie = movieCells.firstMatch
+        XCTAssertTrue(firstMovie.waitForExistence(timeout: 5), "First Movie should exist in the view hierarchy")
+        firstMovie.tap()
+        XCTAssertTrue(moviePageView.waitForExistence(timeout: 5), "Movie Page View should exist in the view hierarchy")
+    }
+    
+    // Test: Search is visible
+    func testSearchViewExists() throws {
+        let searchView = app.descendants(matching: .any)["SearchView"]
+        let searchButton = app.descendants(matching: .any)["SearchButton"]
+        XCTAssertTrue(searchButton.waitForExistence(timeout: 5), "Search button should exist")
+        searchButton.tap()
+        XCTAssertTrue(searchView.waitForExistence(timeout: 5), "Search View should exist in the view hierarchy")
     }
 }

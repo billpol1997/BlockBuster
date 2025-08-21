@@ -21,7 +21,6 @@ struct SplashScreen: View {
                            label: { EmptyView() } ).hidden()
             logo
         }
-     
     }
     
     private var logo: some View {

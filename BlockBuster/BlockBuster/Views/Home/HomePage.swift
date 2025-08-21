@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct HomePage: View {
+    //MARK: - Properties
     @StateObject var viewModel: HomePageViewModel
     @State private var navigateToMoviePage: Bool = false
     @State private var selectedMovie: Int = 0
     
+    //MARK: - Init
     init(viewModel: HomePageViewModel) {
         self._viewModel = StateObject(wrappedValue: DIContainer.shared.getContainerSwinject().resolve(HomePageViewModel.self)!)
     }
     
+    //MARK: - Body
     var body: some View {
         handleState()
             .padding(.horizontal, 16)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("HomePageView")
             .navigationBarBackButtonHidden()
             .toolbar {
                 toolbar
@@ -27,11 +32,12 @@ struct HomePage: View {
                 self.viewModel.fetchData(for: .popular)
             }
             .onReceive(viewModel.$searchText) { _ in
-             guard viewModel.currentState == .search else { return }
+                guard viewModel.currentState == .search else { return }
                 viewModel.searchMovie()
             }
     }
     
+    //MARK: - State handling
     @ViewBuilder
     private func handleState() -> some View {
         if viewModel.showError {
@@ -47,6 +53,7 @@ struct HomePage: View {
         }
     }
     
+    //MARK: - Sub views
     @ViewBuilder
     private var content: some View {
         VStack {

@@ -33,11 +33,11 @@ struct SearchBar: View {
     
     private var textField: some View {
         TextField(placeholder, text: $text)
-        .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
-        .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
-        .textInputAutocapitalization(.none)
-        .disableAutocorrection(true)
-        .submitLabel(.search)
+            .tint(Color(red: 22/255, green: 170/255, blue: 170/255))
+            .foregroundColor(Color(red: 22/255, green: 170/255, blue: 170/255))
+            .textInputAutocapitalization(.none)
+            .disableAutocorrection(true)
+            .submitLabel(.search)
     }
     
     @ViewBuilder

@@ -9,6 +9,7 @@ import Foundation
 
 
 final class MoviePageViewModel: ObservableObject {
+    //MARK: - Properties
     @Published var showError: Bool = false
     @Published var movie: MovieModel?
     @Published var isLoading: Bool = false
@@ -19,11 +20,13 @@ final class MoviePageViewModel: ObservableObject {
     private var dataFactory: MoviePageDataFactory
     private var uiTesting = CommandLine.arguments.contains("--ui-testing")
     
+    //MARK: - Init
     init(movieId: Int, dataFactory: MoviePageDataFactory) {
         self.movieId = movieId
         self.dataFactory = dataFactory
     }
     
+    //MARK: - Fetching
     @MainActor
     func fetchData(_ isInTesting: Bool = false) {
         isLoading = true
@@ -43,6 +46,7 @@ final class MoviePageViewModel: ObservableObject {
         }
     }
     
+    //MARK: - Private functions
     private func fetchDetails(_ isInTesting: Bool = false) async throws -> MovieResponseModel? {
         
         do {

@@ -9,14 +9,16 @@ import Foundation
 import SwiftUI
 
 struct CustomToolbar: View {
+    //MARK: - Properties
     @Namespace private var bubbleNS
     @State var isSearchActive: Bool = false
     @Binding var searchText: String
     var changedState: ((Bool) -> Void)
     
+    //MARK: - Body
     var body: some View {
         HStack(alignment: .bottom) {
-          handleState()
+            handleState()
                 .frame(height: 56)
                 .padding(.horizontal, 8)
         }
@@ -25,6 +27,7 @@ struct CustomToolbar: View {
         .background(Color(red: 22/255, green: 170/255, blue: 170/255))
     }
     
+    //MARK: - State handling
     @ViewBuilder
     private func handleState() -> some View {
         switch isSearchActive {
@@ -35,6 +38,7 @@ struct CustomToolbar: View {
         }
     }
     
+    //MARK: - Sub views
     private var content: some View {
         HStack {
             logo
@@ -72,6 +76,8 @@ struct CustomToolbar: View {
                 )
                 .matchedGeometryEffect(id: "mainBubble", in: bubbleNS)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("SearchButton")
     }
     
     @ViewBuilder
@@ -84,9 +90,10 @@ struct CustomToolbar: View {
         } label: {
             Image(systemName: "arrow.left.circle.fill")
                 .foregroundColor(.white)
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel("DismissSearchButton")
                 .matchedGeometryEffect(id: "mainBubble", in: bubbleNS)
         }
-        .accessibilityLabel("Dismiss search")
     }
     
     @ViewBuilder
@@ -98,6 +105,8 @@ struct CustomToolbar: View {
                     .animation(.linear(duration: 0.3), value: isSearchActive)
                 SearchBar(text: $searchText)
                     .transition(.bubble)
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("SearchView")
                 Spacer()
             }
             .transition(.opacity.combined(with: .move(edge: .trailing)))
@@ -106,6 +115,7 @@ struct CustomToolbar: View {
     }
 }
 
+//MARK: - Custom transition
 extension AnyTransition {
     static var bubble: AnyTransition {
         .asymmetric(
